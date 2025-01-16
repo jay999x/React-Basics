@@ -1,46 +1,29 @@
-import { React, useState, Stack } from 'react'
-import { PostComponent } from './Post';
+import React from 'react';
 
-//import './App.css'
+const ItemList = ({items})=>{
 
-function App(){
+  return (
+    <ul>
 
-  const[posts, setPosts] = useState([])
-  const postcomp = posts.map(post => <PostComponent
-    name={post.name}
-    subtitle={post.subtitle}
-    description={post.description}
-    time={post.time}
-    image={post.image}
-     />)
+      {items.map (item =>(
+        <li key = {item.id}>{item.name}</li>
+      ))
+      }
+    </ul>
+  );
 
-     function addPost(){
-      setPosts([...posts,{
-        name: "Jay",
-        subtitle: "This is the first post",
-        description:"Nothing to describe",
-        time:"10m ago",
-        image:"https://appx-wsb-gcp-mcdn.akamai.net.in/subject/2023-01-17-0.17044360120951185.jpg"
+};
 
-      } ])
-     }
-return(
-  <>
-  <div style={{background: "#dfe6e9", height: "100vh" }}>
-  
-      <button onClick={addPost}>Add post</button>
-      <div style={{display: "block", justifyContent: "center" , padding:"10px 40px"}}>
-      
-        <div>
-          {postcomp}
-           
-        </div>
-       
-      </div>
-    </div>
-  </>
-)
-  }
+const App =()=> {
 
+  const items = [
+    { id: 1, name: 'Item 1' },
+    { id: 2, name: 'Item 2' },
+    { id: 3, name: 'Item 3' },
 
-export default App
+  ];
+  return <ItemList items = {items}></ItemList>
+
+}
+
+export default App  
